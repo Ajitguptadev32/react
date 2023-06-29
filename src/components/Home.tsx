@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import axios from '../axios';
 import { useEffect, useState } from 'react'
 import { Button } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import API from '../axios';
 import { getUsers } from './actions/Api';
 
@@ -18,9 +18,13 @@ interface UserData {
 }
 export default function BasicTable() {
 
+
   const [mydata, setMydata]=useState<UserData[]>([]);
   const{ id } =useParams();
-
+  // delte 
+  const onDelete=async(id:string)=>{
+    await API.delete(id).then(()=>{getApiData()})
+  }
 
   useEffect(()=>{
     getApiData();
@@ -36,6 +40,8 @@ export default function BasicTable() {
     console.log(error)
 
   }
+  // delet user
+ 
   }
   return (
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -58,7 +64,7 @@ export default function BasicTable() {
                 <TableCell>{user.password}</TableCell>
                 <TableCell>
                   <Button style={{margin:'5'}} variant='contained' color='secondary' component={Link} to={`/edit/${user._id}`}>Edit</Button>
-                  <Button variant='contained' color='primary'>Delete</Button>
+                  <Button variant='contained' color='primary'onClick={() => onDelete(user._id)}>Delete</Button>
                 </TableCell>
               </TableRow>
             ))
