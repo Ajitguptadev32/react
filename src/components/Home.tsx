@@ -40,7 +40,7 @@ export default function BasicTable() {
     console.log(error)
 
   }
-  // delet user
+
  
   }
   return (
