@@ -9,25 +9,28 @@ import { useEffect, useState } from 'react'
 import { Button } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import API from '../axios';
+import { fetchUsers } from '../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 //import { getUsers } from './actions/Api';
-
 interface UserData {
   _id: string;
   email: string;
   password: string;
 }
 export default function BasicTable() {
-
+  const dispatch=useDispatch();
+  const state=useSelector((state)=>state);
+  console.log('state',state)
 
   const [mydata, setMydata]=useState<UserData[]>([]);
-  //const{ id } =useParams();
   // delte 
   const onDelete=async(id:string)=>{
     await API.delete(id).then(()=>{getApiData()})
   }
 
   useEffect(()=>{
-    getApiData();
+    fetchUsers();
+    console.log(fetchUsers)
   },[])
 
   const getApiData= async()=>{
