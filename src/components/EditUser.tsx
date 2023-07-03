@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import { Button, TextField } from '@mui/material';
 import axios from '../axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getUserById } from './actions/Api';
+//import { getUserById } from './actions/Api';
 import API from '../axios';
 //import { getUser } from './Home';
 const EditUser = () => {

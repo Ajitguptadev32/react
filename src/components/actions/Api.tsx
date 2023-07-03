@@ -1,26 +1,31 @@
 import axios from 'axios';
-const API = axios.create({
-  baseURL:'http://localhost:3000'
-});
 
-const getUsers = async () => {
-  try {
-    const response = await API.get('');
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
+const URL ='http://localhost:3000/'
 
-const getUserById = async (id:any) => {
-  try {
-    const response = await axios.get(`${id}`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
+class UserService {
 
-export { getUsers, getUserById };
+    getUser(){
+        return axios.get(URL);
+    }
+
+    createUser(){
+        return axios.post(URL);
+    }
+
+    getUserById(){
+        return axios.get(URL);
+    }
+
+    updateUser(){
+        return axios.put(URL);
+    }
+
+    deleteUser(){
+        return axios.delete(URL );
+    }
+}
+
+export default new UserService()
+
+
+// delete data

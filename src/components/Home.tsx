@@ -4,12 +4,12 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import axios from '../axios';
+//import axios from '../axios';
 import { useEffect, useState } from 'react'
 import { Button } from '@mui/material';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import API from '../axios';
-import { getUsers } from './actions/Api';
+//import { getUsers } from './actions/Api';
 
 interface UserData {
   _id: string;
@@ -20,7 +20,7 @@ export default function BasicTable() {
 
 
   const [mydata, setMydata]=useState<UserData[]>([]);
-  const{ id } =useParams();
+  //const{ id } =useParams();
   // delte 
   const onDelete=async(id:string)=>{
     await API.delete(id).then(()=>{getApiData()})

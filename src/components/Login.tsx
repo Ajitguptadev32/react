@@ -10,37 +10,28 @@ const Login = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
 
-
-
-  const loginSubmit = async (e: { preventDefault: () => void; }) => {
+  const loginSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    try {
-      const response = await API.post('/login', {
-        email,
-        password
+    API.post('/login', {
+      email,
+      password
+    })
+      .then((response) => {
+        console.log(response)
+        if(response.data.token){
+          localStorage.setItem('token',response.data.token);
+          navigate('/profile')
+        }
+        return response.data.token
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      // const { token } = response.data;
-      // console.log(response.data);
-      console.log(response);
-      
-      
-      // if (token) {
-      //   console.log(typeof(token));
-      //   setToken(token);
-      //   console.log(typeof(token));
-      //   localStorage.setItem('token', token);
-
-      //   navigate('/profile');
-      // }
-      setToken(response.data.Token)
-      console.log(token);
-      
-    } catch (error) {
-      console.log(error);
-    }
   };
+  
+
+
   
 
   return (
